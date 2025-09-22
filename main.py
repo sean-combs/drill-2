@@ -1,19 +1,27 @@
+from pyscript import when, display, document
 
+@when("click", "#submit-btn")
+def show_message(event):
+    name = document.querySelector("#name").value
+    age = document.querySelector("#age").value
+    school = document.querySelector("#school").value
 
-def gather_info(event=None):
-    name = document.getElementById("name_input").value
-    age = document.getElementById("age_input").value
-    school = document.getElementById("school_input").value
+    # Clear the output div first
+    document.querySelector("#output").innerText = ""
 
-    document.getElementById("output_name").innerText = name
-    document.getElementById("output_age").innerText = age
-    document.getElementById("output_school").innerText = school
+    # Multiline message using input values
+    message = f"""👤 Student Profile
+    Name   : {name}
+    Age    : {age}
+    School : {school}
 
-    notes = f"{name} is currently {age} years old and studies at {school}. This information was gathered through input fields and displayed using a multiline string in Python via PyScript."
-    document.getElementById("output_notes").innerText = notes
+    ✏️ Notes:
+    {name} is currently {age} years old and studies at {school}.
+    This information was gathered through input fields and displayed using
+    a multiline string in Python via PyScript.
+    """
 
-btn = document.getElementById("generate_btn")
-btn.addEventListener("click", gather_info)
+    display(message, target="output")
 
 
 
